@@ -27,6 +27,10 @@ const FeedbackForm = () => {
   //list of all the feedbacks
   const [feedbacks, setFeedbacks] = useState([]);
 
+  //keeping track of course from dropdown
+  const [selectedCourse, setSelectedCourse] = useState('');
+
+
   useEffect(() => {
     // Load feedbacks from local storage on component mount
     const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
@@ -98,6 +102,11 @@ const removeFeedback = (text) => {
       )
     );
   }
+
+  // Filtered feedbacks based on selected course
+    const filteredFeedbacks = selectedCourse
+    ? feedbacks.filter((feedback) => feedback.course === selectedCourse)
+    : feedbacks;
   
     return (
       <div>
@@ -149,12 +158,31 @@ const removeFeedback = (text) => {
         </Card>
 
         {/* the returned list of reminders */}
+        {/* Course filter dropdown */}
+        <div className="mb-3">
+          <label htmlFor="courseFilter" className="form-label">
+            Filter by Course:
+          </label>
+          <select
+            id="courseFilter"
+            className="form-control"
+            value={selectedCourse}
+            onChange={(e) => setSelectedCourse(e.target.value)}
+            style={{ width: '150px' }} 
+          >
+            <option value="">All Courses</option>
+            {/* Add options based on your available courses */}
+            <option value="SI 612">SI 612</option>
+            <option value="SI 579">SI 579</option>
+            {/* Add more options as needed */}
+          </select>
+        </div>
+
         <div className="col col-sm-12 col-lg-8">
-          {feedbacks.length === 0 && "no entries"}
+          {filteredFeedbacks.length === 0 && "no entries"}
           <ul>
-            {feedbacks.length > 0 &&
-              feedbacks.map((feedback, index) => (
-                // <li key={index}>{`${reminder.firstName} ${reminder.lastName} ${reminder.startDate} ${reminder.course}`}<button onClick={(e) => removeReminder(reminder.firstName)} >X</button></li>)}
+            {filteredFeedbacks.length > 0 &&
+              filteredFeedbacks.map((feedback, index) => (
                 <FeedbackCard
                   key={index}
                   feedback={feedback}
