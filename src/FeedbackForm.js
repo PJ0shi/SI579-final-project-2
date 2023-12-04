@@ -3,16 +3,14 @@ import FormItem from "./FormItem.js";
 import FeedbackCard from "./FeedbackCard.js";
 import Card from "react-bootstrap/Card";
 
-//These are the initial form values
+const FeedbackForm = ({username}) => {
+  //These are the initial form values
 const initialFormValues = {
-  firstName: "",
+  firstName: username,
   startDate: "",
   course: "",
   feedback: "",
 };
-
-
-const FeedbackForm = () => {
 //data for the entire form
   const [formData, setFormData] = useState(initialFormValues);
   // const noneEmpty = Object.values(formData).every(item => item.length > 0)
@@ -78,7 +76,7 @@ const removeFeedback = (text) => {
     setFormData((previousState) => {
       return {
         ...previousState,
-        [stateName]: e.target.value,
+        [stateName]: stateName === "firstName" ? username : e.target.value,
       };
     });
   };
@@ -118,6 +116,7 @@ const removeFeedback = (text) => {
               type="text"
               formData={formData}
               inputHandler={inputHandler}
+              disabled={true} // Set disabled attribute to true
             />
             {/* <FormItem label="Last Name" stateName="lastName" type="text" formData={formData} inputHandler={inputHandler} />       */}
             <FormItem
@@ -188,6 +187,7 @@ const removeFeedback = (text) => {
                   feedback={feedback}
                   removeFeedback={removeFeedback}
                   updateFeedback={updateFeedback}
+                  username = {username}
                 />
               ))}
           </ul>

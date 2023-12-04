@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 
-const FeedbackCard = ({ feedback, removeFeedback, updateFeedback }) => {
+const FeedbackCard = ({ feedback, removeFeedback, updateFeedback, username}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedFeedback, setUpdatedFeedback] = useState(feedback.feedback);
-
+  
   const handleEdit = () => {
-    setIsEditing(true);
+    if (feedback.firstName === username) {
+      setIsEditing(true);
+    } else {
+      alert('You can only edit your own feedback.');
+    }
   };
 
   const handleCancelEdit = () => {
@@ -19,6 +23,10 @@ const FeedbackCard = ({ feedback, removeFeedback, updateFeedback }) => {
     updateFeedback(feedback.firstName, updatedFeedback);
     setIsEditing(false);
   };
+
+  console.log("username passed to card:" + username)
+  console.log("feedback.firstName in card:" + feedback.firstName)
+
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -50,7 +58,7 @@ const FeedbackCard = ({ feedback, removeFeedback, updateFeedback }) => {
             <Card.Link href="#" onClick={handleEdit}>
               Edit
             </Card.Link>
-            <Card.Link href="#" onClick={() => removeFeedback(feedback.firstName)}>
+            <Card.Link href="#" onClick={() => feedback.firstName === username ? removeFeedback(feedback.firstName) : alert('You can only delete your own feedback.')}>
               Delete
             </Card.Link>
           </>
