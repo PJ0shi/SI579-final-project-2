@@ -6,7 +6,7 @@ function Footer(){
     return (
         <footer>
             <p>
-                Copyright {currentYear}
+                University of Michigan School of Information Copyright {currentYear}
             </p>
         </footer>
     );

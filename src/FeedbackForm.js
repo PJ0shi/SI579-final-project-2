@@ -108,7 +108,7 @@ const removeFeedback = (text) => {
   
     return (
       <div>
-        <Card style={{ width: "60rem", padding: "2rem", margin: "2%" }}>
+        <Card className="feedback-form-card" style={{backgroundColor: '#EDECEC'}}>
           <form className="col col-sm-12 col-lg-5" onSubmit={submitForm}>
             <FormItem
               label="Name"
@@ -146,7 +146,7 @@ const removeFeedback = (text) => {
               {/* <button disabled={!noneEmpty && !startBeforeEnd} type='submit'>Submit Vacation Request</button> */}
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="button SIbutton"
                 onClick={addFeedback}
                 disabled={!noneEmpty}
               >
@@ -167,17 +167,35 @@ const removeFeedback = (text) => {
             className="form-control"
             value={selectedCourse}
             onChange={(e) => setSelectedCourse(e.target.value)}
-            style={{ width: '150px' }} 
+            style={{ width: '150px', backgroundColor: '#EDECEC'}} 
           >
             <option value="">All Courses</option>
             {/* Add options based on your available courses */}
-            <option value="SI 612">SI 612</option>
-            <option value="SI 579">SI 579</option>
-            {/* Add more options as needed */}
+            <option value="SI 501">SI 501</option>
+            <option value="SI 504">SI 504</option>
+            <option value="SI 505">SI 505</option>
+            <option value="SI 506">SI 506</option>
+            <option value="SI 507">SI 507</option>
+            <option value="SI 510">SI 510</option>
+            <option value="SI 511">SI 511</option>
+            <option value="SI 512">SI 512</option>
+            <option value="SI 515">SI 515</option>
+            <option value="SI 519">SI 519</option>
+            <option value="SI 520">SI 520</option>
+            <option value="SI 521">SI 521</option>
+            <option value="SI 529">SI 529</option>
+            <option value="SI 536">SI 536</option>
+            <option value="SI 538">SI 538</option>
+            <option value="SI 539">SI 539</option>
+            <option value="SI 540">SI 540</option>
+            <option value="SI 542">SI 542</option>
+            <option value="SI 544">SI 544</option>
+            <option value="SI 547">SI 547</option>            
           </select>
         </div>
 
-        <div className="col col-sm-12 col-lg-8">
+        {/* <div className="col col-sm-12 col-lg-8"> */}
+        <div className="feedback-card-grid">
           {filteredFeedbacks.length === 0 && "no entries"}
           <ul>
             {filteredFeedbacks.length > 0 &&

@@ -1,6 +1,8 @@
 // In Login.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -13,29 +15,32 @@ const Login = ({ onLogin }) => {
   };
 
   return (
+    <Card className="login-card text-center">
     <div>
       <h2>Login</h2>
       <form>
         <label>
           Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input className="form-field" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
+        <br />
         <br />
         <label>
           Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input className="form-field" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <br />
-        <button type="button" onClick={handleLogin}>
+        <button className="button SIbutton" type="button" onClick={handleLogin}>
           Login
         </button>
       </form>
 
       {/* Link to navigate to the Register component */}
       <p>
-        Don't have an account? <Link to="/register">Create one here</Link>.
+        Don't have an account? <Link to="/register">Register</Link>.
       </p>
     </div>
+    </Card>
   );
 };
 

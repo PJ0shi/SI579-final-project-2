@@ -1,6 +1,8 @@
 // In Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+
 
 const Register = ({ onAuthentication }) => {
   const [username, setUsername] = useState('');
@@ -46,24 +48,27 @@ const Register = ({ onAuthentication }) => {
   };
 
   return (
+    <Card className="login-card text-center">
     <div>
-      <h2>Create Account</h2>
+      <h2>Register</h2>
       <form>
         <label>
           Username:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
         <br />
+        <br />
         <label>
           Password:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <br />
-        <button type="button" onClick={handleRegister}>
+        <button className="button SIbutton" type="button" onClick={handleRegister}>
           Register
         </button>
       </form>
     </div>
+    </Card>
   );
 };
 
